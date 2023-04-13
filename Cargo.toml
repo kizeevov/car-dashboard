@@ -1,2 +1,4 @@
 [workspace]
 members = ["dashboard"]
+
+resolver = "2"

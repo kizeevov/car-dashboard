@@ -1,6 +1,6 @@
 #[cfg(not(feature = "mcu-board-support"))]
 fn main() {
-    slint_build::compile("ui/test.slint").unwrap();
+    slint_build::compile("ui/main.slint").unwrap();
 }
 
 #[cfg(feature = "mcu-board-support")]
