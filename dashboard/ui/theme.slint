@@ -1,0 +1,63 @@
+export struct Palette {
+    background: brush,
+
+    widget-background: brush,
+    text-color: brush,
+
+    menu-button-background: brush,
+    menu-button-normal: brush,
+    menu-button-pressed: brush,
+    menu-button-selected: brush,
+    menu-button-background-selected: brush,
+
+    speedometer: brush,
+    speedometer-text: brush,
+    speedometer-text-secondary: brush,
+    speedometer-accent: brush,
+
+    progress-bar-background: brush,
+    progress-bar-accent: brush,
+}
+
+export struct Durations {
+    fast: duration,
+    medium: duration,
+    slow: duration,
+}
+
+export global Theme {
+    in property <bool> night-mode: true;
+
+    in property <Palette> palette: root.night-mode ? night-palette: night-palette;
+
+    property <Palette> night-palette: {
+        background: #111111,
+        text-color: #ffffff,
+
+        widget-background: #1E1E1E,
+
+        menu-button-background: #1E1E1E,
+        menu-button-normal: #A1A1A1,
+        menu-button-pressed: #CFF80B,
+        menu-button-selected: #FFFFFF,
+        menu-button-background-selected: #505050,
+
+        speedometer: #d9d9d940,
+        speedometer-text: #FFFFFF,
+        speedometer-text-secondary: #87888C,
+        speedometer-accent: #CFF80B,
+
+        progress-bar-background: rgba(135, 136, 140, 0.15),
+        progress-bar-accent: #CFF80B,
+    };
+
+    // property <Palette> light-palette: {
+    //     background: #ffffff
+    // };
+
+    in property <Durations> durations: {
+        fast: 125ms,
+        medium: 200ms,
+        slow: 500ms,
+    };
+}

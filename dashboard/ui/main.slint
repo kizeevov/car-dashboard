@@ -1,0 +1,99 @@
+import { Theme } from "theme.slint";
+import { MenuBar } from "blocks/menu_bar.slint";
+import { Header } from "blocks/header.slint";
+import { Button , Slider, CheckBox} from "std-widgets.slint";
+
+import { Speedometer } from "widgets/speedometer.slint";
+import { Player } from "widgets/player.slint";
+
+import "assets/fonts/Poppins-Regular.ttf";
+import "assets/fonts/Poppins-Medium.ttf";
+import "assets/fonts/Poppins-SemiBold.ttf";
+import { DemoControl } from "demo_control.slint";
+
+export component MainPage inherits Rectangle {
+    border-radius: 40px;
+    background: Theme.palette.background;
+    animate background { duration: 300ms; }
+
+    VerticalLayout {
+        padding: 30px;
+
+        Header {
+            preferred-height: 108px;    
+        }
+
+        VerticalLayout {
+            vertical-stretch: 0;
+
+            HorizontalLayout {
+                alignment: center;
+
+                Player { 
+                    vertical-stretch: 0;
+                    horizontal-stretch: 0;
+                }
+            }
+
+            Rectangle {
+                vertical-stretch: 1;
+            }
+
+            HorizontalLayout {
+                alignment: center;
+
+                Speedometer {
+                    vertical-stretch: 0;
+                    height: 345px;
+                    width: 345px;
+                }
+            }
+        }
+
+        VerticalLayout { 
+            MenuBar { 
+                height: 102px;
+            }
+        }
+    }
+}
+
+export component MainWindow inherits Window {
+    title: "Car Dashboard";
+    // min-width: 1440px;
+    // min-height: 1024px;
+
+    default-font-family: "Poppins";
+    background: #D7D7D7;
+
+    HorizontalLayout {
+        alignment: center;
+        
+        VerticalLayout {
+            alignment: center;
+
+            MainPage {
+                width: 1440px;
+                height: 1024px;
+            }
+        }
+
+        i-demo := DemoControl { 
+            width: self.visible ? 250px : 0px;
+        }
+    }
+
+    VerticalLayout {
+        alignment: start;
+        HorizontalLayout {
+            alignment: center;
+            Button {
+                text: i-demo.visible ? "Hide DemoControl" : "Show DemoControl";
+                clicked => {
+                    i-demo.visible = !i-demo.visible
+                }
+            }
+        }
+    }
+    
+}

@@ -1,0 +1,53 @@
+import { Theme } from "../theme.slint";
+
+export component MenuButton inherits Rectangle {
+    callback clicked <=> i-touch-area.clicked;
+
+    in property <image> icon <=> i-icon.source;
+    in property <string> text <=> i-text.text;
+    in property <bool> selected: false; 
+    in property <bool> enabled <=> i-touch-area.enabled;
+
+    min-width: 110px;
+    min-height: 96px;
+    border-radius: 18px;
+    background: Theme.palette.menu-button-background;
+
+    VerticalLayout {
+        spacing: 9px;
+        alignment: center;
+
+        i-icon := Image {
+            preferred-width: 36px;
+            preferred-height: 36px;
+
+            colorize: Theme.palette.menu-button-normal;
+            animate colorize { duration: Theme.durations.medium;  }
+        }
+
+        i-text := Text {
+            horizontal-alignment: center;
+            font-size: 10px;
+            font-weight: 500;
+
+            color: Theme.palette.menu-button-normal;
+            animate color { duration: Theme.durations.medium;  }
+        }
+    }
+
+    i-touch-area := TouchArea {}
+
+    states [  
+        disabled when !root.enabled : {
+            opacity: 0.25;
+        }
+        pressed when i-touch-area.pressed : {
+            i-icon.colorize: Theme.palette.menu-button-pressed;
+            i-text.color: Theme.palette.menu-button-pressed;
+        }
+        selected when root.selected : {
+            i-icon.colorize: Theme.palette.menu-button-pressed;
+            i-text.color: Theme.palette.menu-button-pressed;
+        }
+    ]
+}

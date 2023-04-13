@@ -1,0 +1,12 @@
+import { Theme } from "../theme.slint";
+
+export component Header {
+    HorizontalLayout {
+        Rectangle {
+            height: 60px;
+            width: 483px;
+            border-radius: self.height / 2;
+            background: Theme.palette.menu-button-background;
+        }
+    }
+}

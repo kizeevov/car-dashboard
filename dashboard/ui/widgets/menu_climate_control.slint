@@ -1,0 +1,74 @@
+import { Theme } from "../theme.slint";
+import { Images } from "../images.slint";
+
+component SpinBox inherits Rectangle {
+    VerticalLayout {
+        alignment: center;
+
+        Image {
+            preferred-width: 7px;
+            preferred-height: 7px;
+            source: Images.arrow-up;
+        }
+
+        Text {
+            text: "34";
+            font-size: 22pt;
+            font-weight: 600;
+            color: Theme.palette.text-color;
+        }
+
+        Image {
+            preferred-width: 7px;
+            preferred-height: 7px;
+            source: Images.arrow-down;
+        }
+    }
+}
+
+export component MenuClimateControl inherits Rectangle {
+    min-width: 140px;
+    min-height: 96px;
+    border-radius: 18px;
+    background: Theme.palette.menu-button-background;
+
+    in property <bool> is-right: false;
+
+    HorizontalLayout {
+        spacing: 9px;
+        alignment: center;
+        visible: root.is-right;
+
+        Image {
+            source: Images.seat-right;
+            preferred-width: 43px;
+            preferred-height: 43px;
+
+            colorize: Theme.palette.menu-button-selected;
+            animate colorize { duration: Theme.durations.medium;  }
+        }
+
+        SpinBox {
+            
+        }
+    }
+
+    HorizontalLayout {
+        spacing: 9px;
+        alignment: center;
+        visible: !root.is-right;
+
+        SpinBox {
+
+        }
+
+        Image {
+            source: Images.seat-left;
+            preferred-width: 43px;
+            preferred-height: 43px;
+
+            colorize: Theme.palette.menu-button-selected;
+            animate colorize { duration: Theme.durations.medium;  }
+        }
+    }
+}

@@ -1,0 +1,100 @@
+import { Theme } from "../theme.slint";
+
+export component Speedometer inherits Rectangle {
+    // border-color: yellow;
+    // border-width: 1px;
+
+    in property <float> speed: 0.0;
+
+    property <length> size: min(root.width, root.height);
+
+    property <float> max-speed: 180.0;
+    property <float> angle-correction: -53.2;
+    property <float> max-angle: 286.3;
+    property <float> angle: -53.2 + (max-angle/max-speed) * speed;
+
+    Path {
+        // width: root.size;
+        // height: root.size;
+        stroke: Theme.palette.speedometer;
+        stroke-width: 3px;
+
+        viewbox-x: 0;
+        viewbox-y: 0;
+
+        viewbox-width: 1;
+        viewbox-height: 1;
+
+        MoveTo {
+            x: 0.2;
+            y: 1;
+        }
+
+        ArcTo {
+            large-arc: true;
+            sweep: true;
+            x: 0.8;
+            y: 1;
+            radius-x: 0.5;
+            radius-y: 0.5;
+        }
+    }
+
+    Path {
+        width: root.size;
+        height: root.size;
+        stroke: Theme.palette.speedometer-accent;
+        stroke-width: 3px;
+
+        viewbox-x: 0;
+        viewbox-y: 0;
+
+        viewbox-width: 1;
+        viewbox-height: 1;
+
+        MoveTo {
+            x: 0.2;
+            y: 1;
+        }
+
+        ArcTo {
+            large-arc: root.angle < 126.84 ? false : true;
+
+            sweep: true;
+            x: 0.5 - 0.5 * cos(root.angle * 1deg);
+            y: 0.6 - 0.5 * sin(root.angle * 1deg);
+            radius-x: 0.5;
+            radius-y: 0.5;
+        }
+    }
+
+    Rectangle {
+        y: 138px;
+        width: 130px;
+        height: 130px;
+        border-radius: 130px;
+        border-color: Theme.palette.speedometer;
+        border-width: 4px;
+
+        VerticalLayout {
+            alignment: center;
+            spacing: -7px;
+
+            Text {
+                horizontal-alignment: center;
+                text: ceil(root.speed);
+                font-weight: 600;
+                font-size: 37pt;
+                color: Theme.palette.speedometer-text;
+            }
+
+            Text {
+                horizontal-alignment: center;
+                text: "Km/h";
+                font-weight: 600;
+                font-size: 18px;
+                color: Theme.palette.speedometer-text-secondary;
+            }
+        }
+    }
+}

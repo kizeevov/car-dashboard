@@ -1,0 +1,32 @@
+import { Button , Slider, CheckBox, HorizontalBox, GroupBox} from "std-widgets.slint";
+
+export component DemoControl inherits Rectangle {
+    // background: #b6b6b6;
+
+    VerticalLayout {
+        alignment: start;
+        padding: 10px;
+
+        GroupBox {
+            title: "Style";
+            CheckBox { 
+                text: "Night mode";
+                checked: true;
+            }
+        }
+
+        GroupBox {
+            title: "Dashboard";
+            VerticalLayout {
+                Text {
+                    text: "Speed";
+                }
+                Slider {
+                    minimum: 0;
+                    maximum: 180;
+                }
+            }
+            
+        }
+    }
+}

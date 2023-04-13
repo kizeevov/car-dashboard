@@ -1,0 +1,52 @@
+import { MenuButton } from "../widgets/menu_button.slint";
+import { MenuClimateControl } from "../widgets/menu_climate_control.slint";
+import { Images } from "../images.slint";
+
+export component MenuBar inherits HorizontalLayout {
+    // alignment: space-around;
+    // spacing: 15px;
+    spacing: 18px;
+
+    MenuClimateControl {
+
+    }
+
+    MenuButton {
+        icon: Images.navigation;
+        text: "Navigation";
+    }
+
+    MenuButton {
+        icon: Images.camera;
+        text: "Camera";
+    }
+
+    MenuButton {
+        icon: Images.media;
+        text: "Media";
+    }
+
+    MenuButton {
+        icon: Images.home;
+        text: "Home";
+    }
+
+    MenuButton {
+        icon: Images.phone;
+        text: "Phone";
+    }
+
+    MenuButton {
+        icon: Images.message;
+        text: "Message";
+    }
+
+    MenuButton {
+        icon: Images.settings;
+        text: "Settings";
+    }
+
+    MenuClimateControl {
+        is-right: true;
+    }
+}
