@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Car Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="spinner" style="position: relative;">
+        <div class="spinner">Loading...</div>
+    </div>
+    <canvas id="canvas"></canvas>
+    <script type="module">
+        import init from './pkg/car_dashboard.js';
+        init().finally(() => {
+            document.getElementById("spinner").remove();
+        });
+    </script>
+</body>
+
+</html>

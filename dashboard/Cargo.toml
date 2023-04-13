@@ -4,9 +4,21 @@ version = "0.1.0"
 edition = "2021"
 build = "build.rs"
 
+[[bin]]
+path = "src/main.rs"
+name = "car-dashboard"
 
 [dependencies]
 slint = "1.0.0"
 
 [build-dependencies]
 slint-build = "1.0.0"
+
+[lib]
+crate-type = ["cdylib"]
+path = "src/main.rs"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen = { version = "0.2" }
+web-sys = { version = "0.3", features = ["console"] }
+console_error_panic_hook = "0.1.5"
