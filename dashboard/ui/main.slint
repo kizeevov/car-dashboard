@@ -11,6 +11,11 @@ import { Player } from "widgets/player.slint";
 // import "assets/fonts/Poppins-SemiBold.ttf";
 import { DemoControl } from "demo_control.slint";
 
+export global MainWindowAdapter {
+    in property <length> height;
+    in property <length> width;
+}
+
 export component MainPage inherits Rectangle {
     border-radius: 40px;
     background: Theme.palette.background;
@@ -60,11 +65,13 @@ export component MainPage inherits Rectangle {
 
 export component MainWindow inherits Window {
     title: "Car Dashboard";
-    // min-width: 1440px;
-    // min-height: 1024px;
+    min-width: 1440px;
+    min-height: 1024px;
+    preferred-height: MainWindowAdapter.height;
+    preferred-width: MainWindowAdapter.width;
 
     // default-font-family: "Poppins";
-    background: #D7D7D7;
+    background: #929292;
 
     HorizontalLayout {
         alignment: center;
@@ -73,12 +80,13 @@ export component MainWindow inherits Window {
             alignment: center;
 
             MainPage {
-                width: 1440px;
-                height: 1024px;
+                // width: 1440px;
+                // height: 1024px;
             }
         }
 
         i-demo := DemoControl { 
+            visible: false;
             width: self.visible ? 250px : 0px;
         }
     }
