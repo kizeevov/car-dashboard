@@ -1,4 +1,5 @@
 /target
+_site/pkg
 .idea
 .vscode
 .DS_Store
