@@ -1,3 +1,26 @@
 export component MainWindow inherits Window {
     title: "Car Dashboard";
+
+    private property <length> track-size: root.horizontal ? root.width - 2 * root.offset : root.height - 2 * offset;
+
+    height: 300px;
+    width: 400px;
+
+       Rectangle {
+        background: blue;
+    }
+
+    Rectangle {
+        background: red;
+        height: 100px;
+        y: 96px;
+        x: 191px;
+        width: 100px;
+    }
+
+    Text {
+        text: "Text";
+        x: 21px;
+        y: 18px;
+    }
 }
