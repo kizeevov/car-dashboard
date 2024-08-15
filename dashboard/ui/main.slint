@@ -16,16 +16,34 @@ export global MainWindowAdapter {
     in property <length> width;
 }
 
+export component ScrollBar inherits Rectangle {
+    in property <bool> enabled;
+    in-out property <bool> horizontal;
+    in-out property <length> maximum;
+    in-out property <length> page-size;
+    in-out property <length> value;
+
+    private property <length> track-size: root.horizontal ? root.width - 2 * root.offset : root.height - 2 * offset;
+    private property <length> step-size: 10px;
+    private property <length> offset: 2px;
+    private property <length> pad: 2px;
+}
+
 export component MainPage inherits Rectangle {
     border-radius: 40px;
     background: Theme.palette.background;
     animate background { duration: 300ms; }
 
+    image := Image {
+        width: 500px;
+        height: 500px;
+    }
+
     VerticalLayout {
         padding: 30px;
 
         Header {
-            preferred-height: 108px;    
+            preferred-height: 108px;
         }
 
         VerticalLayout {
@@ -34,7 +52,7 @@ export component MainPage inherits Rectangle {
             HorizontalLayout {
                 alignment: center;
 
-                Player { 
+                Player {
                     vertical-stretch: 0;
                     horizontal-stretch: 0;
                 }
@@ -55,8 +73,8 @@ export component MainPage inherits Rectangle {
             }
         }
 
-        VerticalLayout { 
-            MenuBar { 
+        VerticalLayout {
+            MenuBar {
                 height: 102px;
             }
         }

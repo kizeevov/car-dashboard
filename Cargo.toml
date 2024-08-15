@@ -1,4 +1,8 @@
 [workspace]
-members = ["dashboard"]
+members = [
+    "dashboard",
+    "location",
+    "map-ui",
+]
 
 resolver = "2"
