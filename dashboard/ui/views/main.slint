@@ -1,0 +1,41 @@
+import { Theme } from "../theme.slint";
+import { MenuBar } from "menu_bar.slint";
+import { Header } from "header.slint";
+import { Radio } from "radio.slint";
+import { Car } from "car.slint";
+import { Button, GridBox, HorizontalBox } from "std-widgets.slint";
+
+export component MainPage inherits Rectangle {
+    animate background { duration: 300ms; }
+
+    VerticalLayout {
+        padding: 30px;
+
+        //        Header {
+//            preferred-height: 68px;
+//        }
+
+        HorizontalLayout {
+            // height: 717px;
+            spacing: 30px;
+            // padding-top: 30px;
+            padding-bottom: 30px;
+
+            car := Car {
+                min-width: 335px;
+                horizontal-stretch: 1;
+            }
+
+            radio := Radio {
+                active-view: menu-bar.selected-view;
+                horizontal-stretch: 4;
+            }
+        }
+
+        VerticalLayout {
+            menu-bar := MenuBar {
+                height: 102px;
+            }
+        }
+    }
+}

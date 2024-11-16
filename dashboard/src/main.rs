@@ -1,3 +1,4 @@
+use i_slint_core::window;
 #[cfg(target_arch = "wasm32")]
 use wasm_bindgen::prelude::*;
 // #[cfg(target_arch = "wasm32")]
@@ -6,8 +7,8 @@ use wasm_bindgen::prelude::*;
 mod player;
 mod ui;
 
-use crate::ui::{MainWindow, MainWindowAdapter};
-use slint::{ComponentHandle, Weak};
+use crate::ui::MainWindow;
+use slint::ComponentHandle;
 
 #[cfg(not(target_arch = "wasm32"))]
 macro_rules! log {
@@ -30,10 +31,14 @@ fn main() {
 
     let window = MainWindow::new().unwrap();
 
+    let _timer = ui::setup_timer(&window);
+    // let ui_join = ui::setup(&window);
+
     #[cfg(target_arch = "wasm32")]
     resize(window.as_weak());
 
     window.run().unwrap();
+    // ui_join.join().unwrap();
 }
 
 #[cfg(target_arch = "wasm32")]

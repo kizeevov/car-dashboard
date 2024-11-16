@@ -1,0 +1,41 @@
+import { MainPage } from "views/main.slint";
+import { Theme } from "../theme.slint";
+
+export global MainWindowAdapter {
+    in property <length> height;
+    in property <length> width;
+}
+
+export component MainWindow inherits Window {
+    title: "Car Dashboard";
+    min-width: 1440px;
+    min-height: 1024px;
+    preferred-height: MainWindowAdapter.height;
+    preferred-width: MainWindowAdapter.width;
+
+    // default-font-family: "Poppins";
+    background: @linear-gradient(0deg, #0B0B0D 0%, #0B0B0D 40%, #20232C 100%);
+
+    Rectangle {
+        border-radius: 40px;
+        background: Theme.palette.background;
+        MainPage {
+            // width: 1440px;
+        // height: 1024px;
+        }
+
+        Rectangle {
+            border-color: #a1a1a156;
+            border-width: 2px;
+            border-radius: 40px;
+            VerticalLayout {
+                padding: 2px;
+                Rectangle {
+                    border-color: #a1a1a115;
+                    border-width: 3px;
+                    border-radius: 38px;
+                }
+            }
+        }
+    }
+}

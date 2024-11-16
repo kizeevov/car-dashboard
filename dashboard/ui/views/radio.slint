@@ -1,0 +1,92 @@
+import { ViewType } from "types.slint";
+import { Home } from "home.slint";
+import { Player } from "player.slint";
+import { Map } from "map.slint";
+import { Camera } from "camera.slint";
+import { Media } from "media.slint";
+import { Settings } from "settings.slint";
+import { Button, GridBox } from "std-widgets.slint";
+
+export component Radio inherits Rectangle {
+    in-out property <int> active-view: 0;
+    in property <duration> page-animation-duration: 250ms;
+
+    Rectangle {
+        clip: true;
+        function calcPageX(pageNumber: int) -> length {
+            if (root.active-view == pageNumber) {
+                return 0;
+            }
+            return root.active-view < pageNumber ? - self.width / 2 : parent.width / 2;
+        }
+        Home {
+            property <int> pageNumber: 0;
+            x: calcPageX(pageNumber);
+            opacity: root.active-view == pageNumber ? 1 : 0;
+            animate x {
+                duration: page-animation-duration;
+                easing: ease-out-quad;
+            }
+            animate opacity {
+                duration: page-animation-duration;
+                easing: ease-out-quad;
+            }
+        }
+
+        Map {
+            property <int> pageNumber: 1;
+            x: calcPageX(pageNumber);
+            opacity: root.active-view == pageNumber ? 1 : 0;
+            animate x {
+                duration: page-animation-duration;
+                easing: ease-out-quad;
+            }
+            animate opacity {
+                duration: page-animation-duration;
+                easing: ease-out-quad;
+            }
+        }
+
+        Camera {
+            property <int> pageNumber: 2;
+            x: calcPageX(pageNumber);
+            opacity: root.active-view == pageNumber ? 1 : 0;
+            animate x {
+                duration: page-animation-duration;
+                easing: ease-out-quad;
+            }
+            animate opacity {
+                duration: page-animation-duration;
+                easing: ease-out-quad;
+            }
+        }
+
+        Media {
+            property <int> pageNumber: 3;
+            x: calcPageX(pageNumber);
+            opacity: root.active-view == pageNumber ? 1 : 0;
+            animate x {
+                duration: page-animation-duration;
+                easing: ease-out-quad;
+            }
+            animate opacity {
+                duration: page-animation-duration;
+                easing: ease-out-quad;
+            }
+        }
+
+        Settings {
+            property <int> pageNumber: 4;
+            x: calcPageX(pageNumber);
+            opacity: root.active-view == pageNumber ? 1 : 0;
+            animate x {
+                duration: page-animation-duration;
+                easing: ease-out-quad;
+            }
+            animate opacity {
+                duration: page-animation-duration;
+                easing: ease-out-quad;
+            }
+        }
+    }
+}
