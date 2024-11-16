@@ -1,0 +1,82 @@
+import { ViewType } from "types.slint";
+import { MenuButton } from "../widgets/menu_button.slint";
+import { MenuClimateControl } from "../widgets/menu_climate_control.slint";
+import { Images } from "../images.slint";
+
+export component MenuBar inherits HorizontalLayout {
+    in-out property <int> selected-view;
+
+    // alignment: space-around;
+    // spacing: 15px;
+    spacing: 18px;
+
+    MenuClimateControl { }
+
+    MenuButton {
+        icon: Images.home;
+        text: "Home";
+        selected: root.selected-view == 0;
+        clicked => {
+            root.selected-view = 0;
+        }
+    }
+
+    MenuButton {
+        icon: Images.navigation;
+        text: "Navigation";
+        selected: root.selected-view == 1;
+        clicked => {
+            root.selected-view = 1;
+        }
+    }
+
+    MenuButton {
+        icon: Images.camera;
+        text: "Camera";
+        selected: root.selected-view == 2;
+        clicked => {
+            root.selected-view = 2;
+        }
+    }
+
+    MenuButton {
+        icon: Images.media;
+        text: "Media";
+        selected: root.selected-view == 3;
+        clicked => {
+            root.selected-view = 3;
+        }
+    }
+
+    //
+//    MenuButton {
+//        icon: Images.phone;
+//        text: "Phone";
+//        selected: root.selected-view == 4;
+//        clicked => {
+//            root.selected-view = 4;
+//        }
+//    }
+//
+//    MenuButton {
+//        icon: Images.message;
+//        text: "Message";
+//        selected: root.selected-view == 5;
+//        clicked => {
+//            root.selected-view = 5;
+//        }
+//    }
+
+    MenuButton {
+        icon: Images.settings;
+        text: "Settings";
+        selected: root.selected-view == 4;
+        clicked => {
+            root.selected-view = 4;
+        }
+    }
+
+    MenuClimateControl {
+        is-right: true;
+    }
+}

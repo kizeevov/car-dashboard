@@ -1,0 +1,26 @@
+import { Theme } from "../theme.slint";
+import { ProgressBar } from "../widgets/widgets.slint";
+
+export global PlayerAdapter { }
+
+export component Player inherits Rectangle {
+    property <bool> compact-mode: false;
+
+    // min-height: 136px;
+    min-width: 690px;
+    border-radius: 15px;
+    background: Theme.palette.widget-background;
+
+    ProgressBar { }
+}
+
+export component CompactPlayer inherits Rectangle {
+    property <bool> compact-mode: false;
+
+    // min-height: 136px;
+    min-width: 690px;
+    border-radius: 15px;
+    background: Theme.palette.widget-background;
+
+    ProgressBar { }
+}

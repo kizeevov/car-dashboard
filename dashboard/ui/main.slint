@@ -1,84 +1,18 @@
 import { Theme } from "theme.slint";
-import { MenuBar } from "blocks/menu_bar.slint";
-import { Header } from "blocks/header.slint";
+import { MainPage } from "views/main.slint";
 import { Button , Slider, CheckBox} from "std-widgets.slint";
-
-import { Speedometer } from "widgets/speedometer.slint";
-import { Player } from "widgets/player.slint";
 
 // import "assets/fonts/Poppins-Regular.ttf";
 // import "assets/fonts/Poppins-Medium.ttf";
 // import "assets/fonts/Poppins-SemiBold.ttf";
-import { DemoControl } from "demo_control.slint";
 
 export global MainWindowAdapter {
     in property <length> height;
     in property <length> width;
 }
 
-export component ScrollBar inherits Rectangle {
-    in property <bool> enabled;
-    in-out property <bool> horizontal;
-    in-out property <length> maximum;
-    in-out property <length> page-size;
-    in-out property <length> value;
-
-    private property <length> track-size: root.horizontal ? root.width - 2 * root.offset : root.height - 2 * offset;
-    private property <length> step-size: 10px;
-    private property <length> offset: 2px;
-    private property <length> pad: 2px;
-}
-
-export component MainPage inherits Rectangle {
-    border-radius: 40px;
-    background: Theme.palette.background;
-    animate background { duration: 300ms; }
-
-    image := Image {
-        width: 500px;
-        height: 500px;
-    }
-
-    VerticalLayout {
-        padding: 30px;
-
-        Header {
-            preferred-height: 108px;
-        }
-
-        VerticalLayout {
-            vertical-stretch: 0;
-
-            HorizontalLayout {
-                alignment: center;
-
-                Player {
-                    vertical-stretch: 0;
-                    horizontal-stretch: 0;
-                }
-            }
-
-            Rectangle {
-                vertical-stretch: 1;
-            }
-
-            HorizontalLayout {
-                alignment: center;
-
-                Speedometer {
-                    vertical-stretch: 0;
-                    height: 345px;
-                    width: 345px;
-                }
-            }
-        }
-
-        VerticalLayout {
-            MenuBar {
-                height: 102px;
-            }
-        }
-    }
+export component Test {
+    height: 34px;
 }
 
 export component MainWindow inherits Window {
@@ -89,37 +23,10 @@ export component MainWindow inherits Window {
     preferred-width: MainWindowAdapter.width;
 
     // default-font-family: "Poppins";
-    background: #929292;
+    background: Theme.palette.background;
 
-    HorizontalLayout {
-        alignment: center;
-        
-        VerticalLayout {
-            alignment: center;
-
-            MainPage {
-                // width: 1440px;
-                // height: 1024px;
-            }
-        }
-
-        i-demo := DemoControl { 
-            visible: false;
-            width: self.visible ? 250px : 0px;
-        }
+    MainPage {
+        // width: 1440px;
+                     // height: 1024px;
     }
-
-    VerticalLayout {
-        alignment: start;
-        HorizontalLayout {
-            alignment: center;
-            Button {
-                text: i-demo.visible ? "Hide DemoControl" : "Show DemoControl";
-                clicked => {
-                    i-demo.visible = !i-demo.visible
-                }
-            }
-        }
-    }
-    
 }

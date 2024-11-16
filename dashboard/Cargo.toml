@@ -9,10 +9,14 @@ path = "src/main.rs"
 name = "car-dashboard"
 
 [dependencies]
-slint = "1.7.2"
+futures = { version = "0.3.28", optional = true }
+slint = { version = "1.8.0", features = ["backend-linuxkms-noseat"] }
+i-slint-core = "1.8.0"
+i-slint-core-macros = "1.7.2"
+tokio = { version = "1.39.2", features = ["rt-multi-thread", "time"] }
 
 [build-dependencies]
-slint-build = "1.7.2"
+slint-build = "1.8.0"
 
 [lib]
 crate-type = ["cdylib"]
