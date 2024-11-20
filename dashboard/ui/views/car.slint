@@ -5,7 +5,8 @@ import { EmergencyButton } from "../widgets/emergency_button.slint";
 import { Speedometer } from "../widgets/speedometer.slint";
 
 export component Car inherits Rectangle {
-    background: #1E1E1E;
+    background: Theme.palette.view-background;
+    animate background { duration: Theme.durations.change-dark-mode; }
     border-radius: 15px;
     in-out property <bool> headlights-on: false;
     in-out property <bool> emergency-on: false;

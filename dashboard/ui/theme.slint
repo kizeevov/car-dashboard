@@ -2,6 +2,7 @@ export struct Palette {
     background: brush,
 
     widget-background: brush,
+    view-background: brush,
     text-color: brush,
 
     menu-button-background: brush,
@@ -13,6 +14,9 @@ export struct Palette {
     icon-button-background: brush,
     icon-button-normal: brush,
     emergency-button-pressed: brush,
+
+    toggle-swith-background: brush,
+    toggle-swith-accent: brush,
 
     speedometer: brush,
     speedometer-text: brush,
@@ -27,17 +31,19 @@ export struct Durations {
     fast: duration,
     medium: duration,
     slow: duration,
+    change-dark-mode: duration,
 }
 
 export global Theme {
     in property <bool> night-mode: true;
 
-    in property <Palette> palette: root.night-mode ? night-palette : night-palette;
+    in property <Palette> palette: root.night-mode ? night-palette : light-palette;
 
     property <Palette> night-palette: {
         background: #111111,
         text-color: #ffffff,
         widget-background: #1E1E1E,
+        view-background: #1E1E1E,
         menu-button-background: #1E1E1E,
         menu-button-normal: #A1A1A1,
         menu-button-pressed: #CFF80B,
@@ -46,6 +52,8 @@ export global Theme {
         icon-button-background: #363636,
         icon-button-normal: #FFFFFF,
         emergency-button-pressed: #FF2257,
+        toggle-swith-background: #4B4B4B,
+        toggle-swith-accent: #CFF80B,
         speedometer: #d9d9d940,
         speedometer-text: #FFFFFF,
         speedometer-text-secondary: #87888C,
@@ -54,13 +62,33 @@ export global Theme {
         progress-bar-accent: #CFF80B,
     };
 
-    // property <Palette> light-palette: {
-    //     background: #ffffff
-    // };
+    property <Palette> light-palette: {
+        background: #DADADA,
+        text-color: #111111,
+        widget-background: #989898,
+        view-background: #989898,
+        menu-button-background: #989898,
+        menu-button-normal: #E7E7E7,
+        menu-button-pressed: #CFF80B,
+        menu-button-selected: #FFFFFF,
+        menu-button-background-selected: #505050,
+        icon-button-background: #505050,
+        icon-button-normal: #FFFFFF,
+        emergency-button-pressed: #FF2257,
+        toggle-swith-background: #4B4B4B,
+        toggle-swith-accent: #CFF80B,
+        speedometer: #d9d9d940,
+        speedometer-text: #FFFFFF,
+        speedometer-text-secondary: #87888C,
+        speedometer-accent: #CFF80B,
+        progress-bar-background: rgba(135, 136, 140, 0.15),
+        progress-bar-accent: #CFF80B,
+    };
 
     in property <Durations> durations: {
         fast: 125ms,
         medium: 200ms,
         slow: 500ms,
+        change-dark-mode: 500ms,
     };
 }

@@ -2,7 +2,8 @@ import { Theme } from "../theme.slint";
 
 export component Media inherits Rectangle {
     border-radius: 15px;
-    background: Theme.palette.widget-background;
+    background: Theme.palette.view-background;
+    animate background { duration: Theme.durations.change-dark-mode; }
     Text {
         text: "Media";
         font-size: 18pt;
