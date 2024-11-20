@@ -1,0 +1,37 @@
+import { Theme } from "../theme.slint";
+
+export component EmergencyButton inherits Rectangle {
+    callback clicked <=> i-touch-area.clicked;
+
+    in property <image> icon <=> i-icon.source;
+    in property <bool> selected: false;
+    in property <bool> enabled <=> i-touch-area.enabled;
+
+    border-radius: root.height / 2;
+    background: Theme.palette.icon-button-background;
+
+    VerticalLayout {
+        padding: 14px;
+        i-icon := Image {
+            preferred-width: 36px;
+            preferred-height: 36px;
+
+            colorize: Theme.palette.menu-button-normal;
+            animate colorize { duration: Theme.durations.medium; }
+        }
+    }
+
+    i-touch-area := TouchArea { }
+
+    states [
+        disabled when !root.enabled: {
+            opacity: 0.25;
+        }
+        pressed when i-touch-area.pressed: {
+            i-icon.colorize: Theme.palette.emergency-button-pressed;
+        }
+        selected when root.selected: {
+            i-icon.colorize: Theme.palette.emergency-button-pressed;
+        }
+    ]
+}

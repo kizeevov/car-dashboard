@@ -6,10 +6,17 @@ import { Camera } from "camera.slint";
 import { Media } from "media.slint";
 import { Settings } from "settings.slint";
 import { Button, GridBox } from "std-widgets.slint";
+import { CompactPlayer } from "player.slint";
 
 export component Radio inherits Rectangle {
+    border-radius: 15px;
+    clip: true;
     in-out property <int> active-view: 0;
     in property <duration> page-animation-duration: 250ms;
+    //    out property <length> map_visible_width: root.active-view == 0 ? home.map_visible_width : map.visible_width;
+//    out property <length> map_visible_height: root.active-view == 0 ? home.map_visible_width : map.visible_width;
+    out property <length> map_visible_width: 0px;
+    out property <length> map_visible_height: 0px;
 
     Rectangle {
         clip: true;
@@ -17,9 +24,9 @@ export component Radio inherits Rectangle {
             if (root.active-view == pageNumber) {
                 return 0;
             }
-            return root.active-view < pageNumber ? - self.width / 2 : parent.width / 2;
+            return root.active-view > pageNumber ? - self.width / 2 : parent.width / 2;
         }
-        Home {
+        home := Home {
             property <int> pageNumber: 0;
             x: calcPageX(pageNumber);
             opacity: root.active-view == pageNumber ? 1 : 0;
@@ -33,10 +40,11 @@ export component Radio inherits Rectangle {
             }
         }
 
-        Map {
+        map := Map {
             property <int> pageNumber: 1;
             x: calcPageX(pageNumber);
             opacity: root.active-view == pageNumber ? 1 : 0;
+            visible: self.opacity != 0;
             animate x {
                 duration: page-animation-duration;
                 easing: ease-out-quad;

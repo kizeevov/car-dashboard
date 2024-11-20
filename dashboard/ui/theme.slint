@@ -10,6 +10,10 @@ export struct Palette {
     menu-button-selected: brush,
     menu-button-background-selected: brush,
 
+    icon-button-background: brush,
+    icon-button-normal: brush,
+    emergency-button-pressed: brush,
+
     speedometer: brush,
     speedometer-text: brush,
     speedometer-text-secondary: brush,
@@ -28,25 +32,24 @@ export struct Durations {
 export global Theme {
     in property <bool> night-mode: true;
 
-    in property <Palette> palette: root.night-mode ? night-palette: night-palette;
+    in property <Palette> palette: root.night-mode ? night-palette : night-palette;
 
     property <Palette> night-palette: {
         background: #111111,
         text-color: #ffffff,
-
         widget-background: #1E1E1E,
-
         menu-button-background: #1E1E1E,
         menu-button-normal: #A1A1A1,
         menu-button-pressed: #CFF80B,
         menu-button-selected: #FFFFFF,
         menu-button-background-selected: #505050,
-
+        icon-button-background: #363636,
+        icon-button-normal: #FFFFFF,
+        emergency-button-pressed: #FF2257,
         speedometer: #d9d9d940,
         speedometer-text: #FFFFFF,
         speedometer-text-secondary: #87888C,
         speedometer-accent: #CFF80B,
-
         progress-bar-background: rgba(135, 136, 140, 0.15),
         progress-bar-accent: #CFF80B,
     };

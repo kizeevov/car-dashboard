@@ -2,6 +2,7 @@ import { Theme } from "../theme.slint";
 import { Images } from "../images.slint";
 
 component SpinBox inherits Rectangle {
+    in-out property <int> value: 24;
     VerticalLayout {
         alignment: center;
 
@@ -12,7 +13,7 @@ component SpinBox inherits Rectangle {
         }
 
         Text {
-            text: "34";
+            text: root.value;
             font-size: 22pt;
             font-weight: 600;
             color: Theme.palette.text-color;
@@ -22,6 +23,20 @@ component SpinBox inherits Rectangle {
             preferred-width: 7px;
             preferred-height: 7px;
             source: Images.arrow-down;
+        }
+    }
+
+    VerticalLayout {
+        TouchArea {
+            clicked => {
+                root.value = Math.min(28, root.value + 1)
+            }
+        }
+
+        TouchArea {
+            clicked => {
+                root.value = Math.max(10, root.value - 1)
+            }
         }
     }
 }
@@ -45,12 +60,10 @@ export component MenuClimateControl inherits Rectangle {
             preferred-height: 43px;
 
             colorize: Theme.palette.menu-button-selected;
-            animate colorize { duration: Theme.durations.medium;  }
+            animate colorize { duration: Theme.durations.medium; }
         }
 
-        SpinBox {
-            
-        }
+        SpinBox { }
     }
 
     HorizontalLayout {
@@ -58,9 +71,7 @@ export component MenuClimateControl inherits Rectangle {
         alignment: center;
         visible: !root.is-right;
 
-        SpinBox {
-
-        }
+        SpinBox { }
 
         Image {
             source: Images.seat-left;
@@ -68,7 +79,7 @@ export component MenuClimateControl inherits Rectangle {
             preferred-height: 43px;
 
             colorize: Theme.palette.menu-button-selected;
-            animate colorize { duration: Theme.durations.medium;  }
+            animate colorize { duration: Theme.durations.medium; }
         }
     }
 }

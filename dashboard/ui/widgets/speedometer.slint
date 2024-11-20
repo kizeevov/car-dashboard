@@ -4,20 +4,21 @@ export component Speedometer inherits Rectangle {
     // border-color: yellow;
     // border-width: 1px;
 
-    in property <float> speed: 0.0;
+    in property <float> speed: 20.0;
+    in property <length> stroke-width: 6px;
 
     property <length> size: min(root.width, root.height);
 
     property <float> max-speed: 180.0;
     property <float> angle-correction: -53.2;
     property <float> max-angle: 286.3;
-    property <float> angle: -53.2 + (max-angle/max-speed) * speed;
+    property <float> angle: -53.2 + (max-angle / max-speed) * speed;
 
     Path {
         // width: root.size;
         // height: root.size;
         stroke: Theme.palette.speedometer;
-        stroke-width: 3px;
+        stroke-width: root.stroke-width;
 
         viewbox-x: 0;
         viewbox-y: 0;
@@ -44,7 +45,7 @@ export component Speedometer inherits Rectangle {
         width: root.size;
         height: root.size;
         stroke: Theme.palette.speedometer-accent;
-        stroke-width: 3px;
+        stroke-width: root.stroke-width;
 
         viewbox-x: 0;
         viewbox-y: 0;
@@ -69,30 +70,21 @@ export component Speedometer inherits Rectangle {
     }
 
     Rectangle {
-        y: 138px;
-        width: 130px;
-        height: 130px;
-        border-radius: 130px;
-        border-color: Theme.palette.speedometer;
-        border-width: 4px;
-
+        y: root.height * 0.1;
         VerticalLayout {
             alignment: center;
-            spacing: -7px;
 
             Text {
                 horizontal-alignment: center;
                 text: ceil(root.speed);
-                font-weight: 600;
-                font-size: 37pt;
+                font-size: 23pt;
                 color: Theme.palette.speedometer-text;
             }
 
             Text {
                 horizontal-alignment: center;
-                text: "Km/h";
-                font-weight: 600;
-                font-size: 18px;
+                text: "km/h";
+                font-size: 16px;
                 color: Theme.palette.speedometer-text-secondary;
             }
         }

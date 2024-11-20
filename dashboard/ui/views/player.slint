@@ -1,5 +1,7 @@
 import { Theme } from "../theme.slint";
+import { Images } from "../images.slint";
 import { ProgressBar } from "../widgets/widgets.slint";
+import { TransparentIconButton } from "../widgets/icon_button.slint";
 
 export global PlayerAdapter { }
 
@@ -15,12 +17,70 @@ export component Player inherits Rectangle {
 }
 
 export component CompactPlayer inherits Rectangle {
-    property <bool> compact-mode: false;
-
     // min-height: 136px;
     min-width: 690px;
     border-radius: 15px;
     background: Theme.palette.widget-background;
 
-    ProgressBar { }
+    HorizontalLayout {
+        padding: 12px;
+        spacing: 16px;
+        Rectangle {
+            width: self.height;
+            border-radius: 8px;
+            clip: true;
+            horizontal-stretch: 0;
+            Image {
+                source: Images.album;
+                image-fit: cover;
+            }
+        }
+
+        Rectangle {
+            VerticalLayout {
+                alignment: center;
+                Text {
+                    text: "Here Comes the Sun";
+                    font-size: 16pt;
+                    color: Theme.palette.text-color;
+                }
+
+                Text {
+                    text: "The Beatles";
+                    font-size: 14pt;
+                    color: Theme.palette.text-color;
+                    opacity: 0.5;
+                }
+            }
+        }
+
+        Rectangle {
+            horizontal-stretch: 1;
+        }
+
+        Rectangle {
+            HorizontalLayout {
+                padding-top: 10px;
+                padding-right: 12px;
+                padding-bottom: 10px;
+                spacing: 12px;
+                TransparentIconButton {
+                    width: self.height;
+                    icon: Images.player-prev;
+                }
+
+                TransparentIconButton {
+                    width: self.height;
+                    icon: Images.player-pause;
+                }
+
+                TransparentIconButton {
+                    width: self.height;
+                    icon: Images.player-next;
+                }
+            }
+        }
+    }
+
+    //    ProgressBar { }
 }

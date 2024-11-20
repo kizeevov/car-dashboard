@@ -4,6 +4,7 @@ use wasm_bindgen::prelude::*;
 // #[cfg(target_arch = "wasm32")]
 // use web_sys::Event;
 
+mod map;
 mod player;
 mod ui;
 
@@ -29,9 +30,14 @@ fn main() {
     #[cfg(all(debug_assertions, target_arch = "wasm32"))]
     console_error_panic_hook::set_once();
 
+    let rt = tokio::runtime::Runtime::new().unwrap();
+    let _tokio = rt.enter();
+
     let window = MainWindow::new().unwrap();
 
-    let _timer = ui::setup_timer(&window);
+    let _map = map::setup(&window);
+
+    // let _timer = ui::setup_timer(&window);
     // let ui_join = ui::setup(&window);
 
     #[cfg(target_arch = "wasm32")]
