@@ -1,32 +1,25 @@
 import { Theme } from "theme.slint";
 import { MainPage } from "views/main.slint";
 import { Button , Slider, CheckBox} from "std-widgets.slint";
+import { MapAdapter, Tile } from "views/map.slint";
 
-// import "assets/fonts/Poppins-Regular.ttf";
-// import "assets/fonts/Poppins-Medium.ttf";
-// import "assets/fonts/Poppins-SemiBold.ttf";
+export { MapAdapter, Tile }
 
 export global MainWindowAdapter {
     in property <length> height;
     in property <length> width;
 }
 
-export component Test {
-    height: 34px;
-}
-
 export component MainWindow inherits Window {
     title: "Car Dashboard";
-    min-width: 1440px;
-    min-height: 1024px;
+    min-width: 1024px;
+    min-height: 600px;
+    out property <length> map_visible_width: main_page.map_visible_width;
+    out property <length> map_visible_height: main_page.map_visible_height;
     preferred-height: MainWindowAdapter.height;
     preferred-width: MainWindowAdapter.width;
 
-    // default-font-family: "Poppins";
     background: Theme.palette.background;
 
-    MainPage {
-        // width: 1440px;
-                     // height: 1024px;
-    }
+    main_page := MainPage { }
 }

@@ -1,9 +1,59 @@
 import { Theme } from "../theme.slint";
+import { Slider } from "std-widgets.slint";
+
+export struct Tile { x: length, y: length, tile: image}
+export struct Viewport {ox: length, oy: length, width: length, height: length}
+
+export global MapAdapter {
+    callback flicked(length, length);
+    callback zoom-changed(float);
+    callback zoom-in(length, length);
+    callback zoom-out(length, length);
+    callback link-clicked();
+    in property <[Tile]> tiles;
+    in-out property <float> zoom: 4.0;
+    in property <Viewport> viewport;
+}
 
 export component Map inherits Rectangle {
     border-radius: 15px;
     background: Theme.palette.widget-background;
-    Text {
-        text: "Map";
+    clip: true;
+
+    out property <length> visible_width: fli.width;
+    out property <length> visible_height: fli.height;
+
+    private property <Viewport> viewport: MapAdapter.viewport;
+
+    changed viewport => {
+        fli.viewport-x = root.viewport.ox;
+        fli.viewport-y = root.viewport.oy;
+        fli.viewport-width = root.viewport.width;
+        fli.viewport-height = root.viewport.height;
+    }
+
+    VerticalLayout {
+        fli := Flickable {
+            for t in MapAdapter.tiles: Image {
+                x: t.x;
+                y: t.y;
+                source: t.tile;
+            }
+            flicked => {
+                MapAdapter.flicked(fli.viewport-x, fli.viewport-y);
+            }
+            TouchArea {
+                scroll-event(e) => {
+                    if (e.delta-y > 0) {
+                        MapAdapter.zoom-in(self.mouse-x + fli.viewport-x, self.mouse-y + fli.viewport-y);
+                        return accept;
+                    } else if (e.delta-y < 0) {
+                        MapAdapter.zoom-out(self.mouse-x + fli.viewport-x, self.mouse-y + fli.viewport-y);
+                        return accept;
+                    }
+                    return reject;
+                }
+            }
+        }
     }
 }

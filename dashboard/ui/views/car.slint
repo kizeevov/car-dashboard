@@ -1,8 +1,84 @@
 import { Theme } from "../theme.slint";
+import { Images } from "../images.slint";
+import { IconButton } from "../widgets/icon_button.slint";
+import { EmergencyButton } from "../widgets/emergency_button.slint";
+import { Speedometer } from "../widgets/speedometer.slint";
 
-export component Car inherits VerticalLayout {
-    Rectangle {
-        background: #1E1E1E;
-        border-radius: 15px;
+export component Car inherits Rectangle {
+    background: #1E1E1E;
+    border-radius: 15px;
+    in-out property <bool> headlights-on: false;
+    in-out property <bool> emergency-on: false;
+    in-out property <bool> emergency-blinked: false;
+
+    Timer {
+        interval: 1s;
+        running: emergency-on;
+        triggered() => {
+            emergency-blinked = !emergency-blinked;
+        }
+    }
+
+    VerticalLayout {
+        padding: 20px;
+
+        Rectangle {
+            Image {
+                source: Images.car-headlights;
+                y: -self.height;
+                opacity: root.headlights-on ? 1 : 0;
+                animate opacity { duration: Theme.durations.medium; }
+            }
+
+            car-image := Image {
+                height: 100%;
+                width: 100%;
+                source: Images.car;
+                image-fit: contain;
+                animate opacity { duration: Theme.durations.medium; }
+            }
+
+            car-headlights-image := Image {
+                height: 100%;
+                width: 100%;
+                source: Images.car-light;
+                opacity: root.headlights-on ? 1 : 0;
+                image-fit: contain;
+                animate opacity { duration: Theme.durations.medium; }
+            }
+        }
+
+        Rectangle {
+            HorizontalLayout {
+                spacing: 20px;
+                alignment: center;
+                IconButton {
+                    height: 42pt;
+                    width: 42pt;
+                    icon: Images.key;
+                }
+
+                EmergencyButton {
+                    height: 42pt;
+                    width: 42pt;
+                    selected: emergency-blinked;
+                    icon: Images.emergency-triangle;
+                    clicked => {
+                        emergency-on = !emergency-on;
+                        emergency-blinked = emergency-on;
+                    }
+                }
+
+                IconButton {
+                    height: 42pt;
+                    width: 42pt;
+                    selected: root.headlights-on;
+                    icon: Images.headlights;
+                    clicked => {
+                        root.headlights-on = !root.headlights-on;
+                    }
+                }
+            }
+        }
     }
 }

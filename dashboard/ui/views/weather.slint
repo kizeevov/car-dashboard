@@ -1,0 +1,43 @@
+import { Theme } from "../theme.slint";
+import { Images } from "../images.slint";
+
+export global PlayerAdapter { }
+
+export component Weather inherits Rectangle {
+    border-radius: 15px;
+    background: Theme.palette.widget-background;
+    VerticalLayout {
+        alignment: center;
+        padding: 12px;
+        Text {
+            text: "13°";
+            font-size: 32pt;
+            color: Theme.palette.text-color;
+            horizontal-stretch: 0;
+            vertical-alignment: center;
+            horizontal-alignment: center;
+        }
+
+        Text {
+            text: "Mostly cloudy";
+            font-size: 14pt;
+            color: Theme.palette.text-color;
+            opacity: 0.4;
+            vertical-alignment: center;
+            horizontal-alignment: center;
+        }
+
+        HorizontalLayout {
+            alignment: center;
+            vertical-stretch: 0;
+            Image {
+                width: 48px;
+                height: 48px;
+                source: Images.weather-cloudy;
+                colorize: Theme.palette.text-color;
+            }
+        }
+
+        Rectangle { }
+    }
+}

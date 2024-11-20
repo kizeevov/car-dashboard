@@ -7,34 +7,28 @@ import { Button, GridBox, HorizontalBox } from "std-widgets.slint";
 
 export component MainPage inherits Rectangle {
     animate background { duration: 300ms; }
+    out property <length> map_visible_width: radio.map_visible_width;
+    out property <length> map_visible_height: radio.map_visible_width;
 
     VerticalLayout {
-        padding: 30px;
-
-        //        Header {
-//            preferred-height: 68px;
-//        }
+        padding: 20px;
 
         HorizontalLayout {
-            // height: 717px;
-            spacing: 30px;
-            // padding-top: 30px;
-            padding-bottom: 30px;
+            spacing: 20px;
+            padding-bottom: 20px;
 
             car := Car {
-                min-width: 335px;
-                horizontal-stretch: 1;
+                max-width: 5px;
             }
 
             radio := Radio {
                 active-view: menu-bar.selected-view;
-                horizontal-stretch: 4;
             }
         }
 
         VerticalLayout {
             menu-bar := MenuBar {
-                height: 102px;
+                height: 70px;
             }
         }
     }

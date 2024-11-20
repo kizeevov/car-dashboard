@@ -1,6 +1,6 @@
 [package]
 name = "car-dashboard"
-version = "0.1.1"
+version = "0.2.0"
 edition = "2021"
 build = "build.rs"
 
@@ -10,19 +10,21 @@ name = "car-dashboard"
 
 [dependencies]
 futures = { version = "0.3.28", optional = true }
-slint = { version = "1.8.0", features = ["backend-linuxkms-noseat"] }
-i-slint-core = "1.8.0"
-i-slint-core-macros = "1.7.2"
+slint = { git = "https://github.com/slint-ui/slint", version = "1.9.0" }
+i-slint-core = { git = "https://github.com/slint-ui/slint", version = "1.9.0" }
+i-slint-core-macros = { git = "https://github.com/slint-ui/slint", version = "1.9.0" }
 tokio = { version = "1.39.2", features = ["rt-multi-thread", "time"] }
+reqwest = "0.12.9"
+image = "0.24.9"
 
 [build-dependencies]
-slint-build = "1.8.0"
+slint-build = { git = "https://github.com/slint-ui/slint", version = "1.9.0" }
 
 [lib]
 crate-type = ["cdylib"]
 path = "src/main.rs"
 
-[target.'cfg(target_arch = "wasm32")'.dependencies]
-wasm-bindgen = { version = "0.2" }
-web-sys = { version = "0.3", features = ["console", "Screen", "Window"] }
-console_error_panic_hook = "0.1.7"
+#[target.'cfg(target_arch = "wasm32")'.dependencies]
+#wasm-bindgen = { version = "0.2" }
+#web-sys = { version = "0.3", features = ["console", "Screen", "Window"] }
+#console_error_panic_hook = "0.1.7"

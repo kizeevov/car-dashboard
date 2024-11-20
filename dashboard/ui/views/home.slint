@@ -1,9 +1,31 @@
 import { Theme } from "../theme.slint";
+import { CompactPlayer } from "player.slint";
+import { Weather } from "weather.slint";
+import { Map } from "map.slint";
 
 export component Home inherits Rectangle {
-    border-radius: 15px;
-    background: Theme.palette.widget-background;
-    Text {
-        text: "Home";
+    out property <length> map_visible_width: map.width;
+    out property <length> map_visible_height: map.height;
+
+    VerticalLayout {
+        spacing: 20px;
+        Rectangle {
+            vertical-stretch: 1;
+            HorizontalLayout {
+                spacing: 20px;
+                map := Map {
+                    horizontal-stretch: 1;
+                }
+
+                Weather {
+                    horizontal-stretch: 0;
+                }
+            }
+        }
+
+        CompactPlayer {
+            height: 100px;
+            vertical-stretch: 0;
+        }
     }
 }

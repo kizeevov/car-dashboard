@@ -1,8 +1,6 @@
 [workspace]
 members = [
     "dashboard",
-    "location",
-    "map-ui",
 ]
 
 resolver = "2"
