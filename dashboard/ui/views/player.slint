@@ -11,7 +11,8 @@ export component Player inherits Rectangle {
     // min-height: 136px;
     min-width: 690px;
     border-radius: 15px;
-    background: Theme.palette.widget-background;
+    background: Theme.palette.view-background;
+    animate background { duration: Theme.durations.change-dark-mode; }
 
     ProgressBar { }
 }
@@ -20,7 +21,8 @@ export component CompactPlayer inherits Rectangle {
     // min-height: 136px;
     min-width: 690px;
     border-radius: 15px;
-    background: Theme.palette.widget-background;
+    background: Theme.palette.view-background;
+    animate background { duration: Theme.durations.change-dark-mode; }
 
     HorizontalLayout {
         padding: 12px;

@@ -17,7 +17,9 @@ export global MapAdapter {
 
 export component Map inherits Rectangle {
     border-radius: 15px;
-    background: Theme.palette.widget-background;
+    background: Theme.palette.view-background;
+    animate background { duration: Theme.durations.change-dark-mode; }
+
     clip: true;
 
     out property <length> visible_width: fli.width;

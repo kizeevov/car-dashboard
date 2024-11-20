@@ -20,6 +20,7 @@ export component MainWindow inherits Window {
     preferred-width: MainWindowAdapter.width;
 
     background: Theme.palette.background;
+    animate background { duration: Theme.durations.change-dark-mode; }
 
     main_page := MainPage { }
 }

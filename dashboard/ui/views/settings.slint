@@ -1,11 +1,32 @@
 import { Theme } from "../theme.slint";
+import { ToggleSwitch } from "../widgets/toggle_switch.slint";
 
 export component Settings inherits Rectangle {
     border-radius: 15px;
-    background: Theme.palette.widget-background;
-    Text {
-        text: "Settings";
-        font-size: 18pt;
-        color: Theme.palette.text-color;
+    background: Theme.palette.view-background;
+    animate background { duration: Theme.durations.change-dark-mode; }
+    GridLayout {
+        padding: 20px;
+        Row {
+            Text {
+                text: "Night mode";
+                color: Theme.palette.text-color;
+                vertical-alignment: center;
+                font-size: 14px;
+            }
+
+            Rectangle { }
+
+            ToggleSwitch {
+                checked: true;
+                toggled => {
+                    Theme.night-mode = self.checked;
+                }
+            }
+        }
+
+        Row {
+            Rectangle { }
+        }
     }
 }
