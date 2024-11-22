@@ -22,6 +22,16 @@ body {
     height: 100%;
     overflow: hidden;
     margin: 0;
+    background: #0B0B0D;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    /* Center vertically and horizontally */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 canvas:focus {

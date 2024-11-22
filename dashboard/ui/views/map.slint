@@ -1,5 +1,7 @@
 import { Theme } from "../theme.slint";
 import { Slider } from "std-widgets.slint";
+import { Images } from "../images.slint";
+import { IconButton } from "../widgets/icon_button.slint";
 
 export struct Tile { x: length, y: length, tile: image}
 export struct Viewport {ox: length, oy: length, width: length, height: length}
@@ -44,16 +46,44 @@ export component Map inherits Rectangle {
             flicked => {
                 MapAdapter.flicked(fli.viewport-x, fli.viewport-y);
             }
-            TouchArea {
-                scroll-event(e) => {
-                    if (e.delta-y > 0) {
-                        MapAdapter.zoom-in(self.mouse-x + fli.viewport-x, self.mouse-y + fli.viewport-y);
-                        return accept;
-                    } else if (e.delta-y < 0) {
-                        MapAdapter.zoom-out(self.mouse-x + fli.viewport-x, self.mouse-y + fli.viewport-y);
-                        return accept;
+            //            TouchArea {
+//                scroll-event(e) => {
+//                    if (e.delta-y > 10px) {
+//                        MapAdapter.zoom-in(self.mouse-x + fli.viewport-x, self.mouse-y + fli.viewport-y);
+//                        return accept;
+//                    } else if (e.delta-y < -10px) {
+//                        MapAdapter.zoom-out(self.mouse-x + fli.viewport-x, self.mouse-y + fli.viewport-y);
+//                        return accept;
+//                    }
+//                    return reject;
+//                }
+//            }
+        }
+    }
+
+    Rectangle {
+        HorizontalLayout {
+            alignment: end;
+            VerticalLayout {
+                alignment: end;
+                padding: 12px;
+                spacing: 12px;
+                IconButton {
+                    height: 38pt;
+                    width: 38pt;
+                    icon: Images.map-plus;
+                    clicked => {
+                        MapAdapter.zoom-in(root.width / 2, root.height / 2);
                     }
-                    return reject;
+                }
+
+                IconButton {
+                    height: 38pt;
+                    width: 38pt;
+                    icon: Images.map-minus;
+                    clicked => {
+                        MapAdapter.zoom-out(root.width / 2, root.height / 2);
+                    }
                 }
             }
         }
