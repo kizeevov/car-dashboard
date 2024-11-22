@@ -46,14 +46,14 @@ export global PlayerAdapter {
             cover: @image-url("../assets/images/player/cover5.jpg"),
         }
     ];
-    function prev_track() {
+    public function prev_track() {
         if (current_index == 0) {
             current_index = tracklist.length - 1;
         } else {
             current_index = mod(current_index - 1, tracklist.length);
         }
     }
-    function next_track() {
+    public function next_track() {
         current_index = mod(current_index + 1, tracklist.length);
     }
 }

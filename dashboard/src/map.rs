@@ -126,7 +126,7 @@ impl World {
                                     return slint::Image::default();
                                 }
                             };
-                        println!("Loaded {url}");
+
                         let image = image
                             .resize(
                                 TILE_SIZE as u32,

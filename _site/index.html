@@ -8,31 +8,34 @@
 </head>
 
 <body>
-    <div id="spinner" style="position: relative;">
-        <div class="spinner">Loading...</div>
-    </div>
+<div id="spinner" style="position: relative;">
+    <div class="spinner">Loading...</div>
+</div>
+<div class="container">
     <canvas id="canvas"></canvas>
-    <script type="module">
-        import init from './pkg/car_dashboard.js';
-        init().finally(() => {
-            document.getElementById("spinner").remove();
-            // document.getElementById("canvas").style.height = "100%";
-            // document.getElementById("canvas").style.width = "100%";
-            // let k = parseFloat(document.getElementById("canvas").style.height) / parseFloat(document.getElementById("canvas").style.width);
+</div>
+<script type="module">
+    import init from './pkg/car_dashboard.js';
 
-            // console.log(document.getElementById("canvas").style.width);
-            // console.log(document.getElementById("canvas").style.height);
-            // console.log(k);
+    init().finally(() => {
+        document.getElementById("spinner").remove();
+        // document.getElementById("canvas").style.height = "100%";
+        // document.getElementById("canvas").style.width = "100%";
+        // let k = parseFloat(document.getElementById("canvas").style.height) / parseFloat(document.getElementById("canvas").style.width);
 
-            // // document.getElementById("canvas").style.width = "100vw";
-            // // document.getElementById("canvas").style.height = "100vh";
-            // let h = parseFloat(document.getElementById("canvas").style.height) * 0.7
-            // let w = parseFloat(document.getElementById("canvas").style.width) * 0.7
+        // console.log(document.getElementById("canvas").style.width);
+        // console.log(document.getElementById("canvas").style.height);
+        // console.log(k);
 
-            // document.getElementById("canvas").style.height = h + 'px';
-            // document.getElementById("canvas").style.width = w + 'px';
-        });
-    </script>
+        // // document.getElementById("canvas").style.width = "100vw";
+        // // document.getElementById("canvas").style.height = "100vh";
+        // let h = parseFloat(document.getElementById("canvas").style.height) * 0.7
+        // let w = parseFloat(document.getElementById("canvas").style.width) * 0.7
+
+        // document.getElementById("canvas").style.height = h + 'px';
+        // document.getElementById("canvas").style.width = w + 'px';
+    });
+</script>
 </body>
 
 </html>

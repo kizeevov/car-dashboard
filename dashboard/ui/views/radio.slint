@@ -13,10 +13,8 @@ export component Radio inherits Rectangle {
     clip: true;
     in-out property <int> active-view: 0;
     in property <duration> page-animation-duration: 250ms;
-    //    out property <length> map_visible_width: root.active-view == 0 ? home.map_visible_width : map.visible_width;
-//    out property <length> map_visible_height: root.active-view == 0 ? home.map_visible_width : map.visible_width;
-    out property <length> map_visible_width: 0px;
-    out property <length> map_visible_height: 0px;
+    out property <length> map_visible_width: root.active-view == 0 ? home.map_visible_width : map.visible_width;
+    out property <length> map_visible_height: root.active-view == 0 ? home.map_visible_width : map.visible_width;
 
     Rectangle {
         clip: true;

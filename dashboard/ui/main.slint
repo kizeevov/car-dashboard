@@ -1,14 +1,10 @@
 import { Theme } from "theme.slint";
+import { MainWindowAdapter, DemoMainWindow } from "demo.slint";
 import { MainPage } from "views/main.slint";
 import { Button , Slider, CheckBox} from "std-widgets.slint";
 import { MapAdapter, Tile } from "views/map.slint";
 
-export { MapAdapter, Tile }
-
-export global MainWindowAdapter {
-    in property <length> height;
-    in property <length> width;
-}
+export { MapAdapter, Tile, MainWindowAdapter, DemoMainWindow }
 
 export component MainWindow inherits Window {
     title: "Car Dashboard";
@@ -16,8 +12,6 @@ export component MainWindow inherits Window {
     min-height: 600px;
     out property <length> map_visible_width: main_page.map_visible_width;
     out property <length> map_visible_height: main_page.map_visible_height;
-    preferred-height: MainWindowAdapter.height;
-    preferred-width: MainWindowAdapter.width;
 
     background: Theme.palette.background;
     animate background { duration: Theme.durations.change-dark-mode; }
