@@ -47,6 +47,15 @@ export component Car inherits Rectangle {
                 image-fit: contain;
                 animate opacity { duration: Theme.durations.medium; }
             }
+
+            Image {
+                height: 100%;
+                width: 100%;
+                source: Images.car-emergency;
+                opacity: root.emergency-blinked ? 1 : 0;
+                image-fit: contain;
+                animate opacity { duration: Theme.durations.fast; }
+            }
         }
 
         Rectangle {
